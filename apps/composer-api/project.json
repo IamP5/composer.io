@@ -5,14 +5,23 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/esbuild:esbuild",
+      "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "target": "node",
+        "compiler": "tsc",
         "outputPath": "dist/apps/composer-api",
-        "format": ["cjs"],
         "main": "apps/composer-api/src/main.ts",
         "tsConfig": "apps/composer-api/tsconfig.app.json",
-        "assets": ["apps/composer-api/src/assets"]
+        "assets": ["apps/composer-api/src/assets"],
+        "webpackConfig": "apps/composer-api/webpack.config.js"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false
+        }
       }
     },
     "serve": {
