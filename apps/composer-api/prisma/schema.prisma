@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum NoteEnum {
+  C
+  D
+  E
+  F
+  G
+  A
+  B
+  Cm
+  Dm
+  Em
+  Fm
+  Gm
+  Am
+  Bm
+  Cb
+  Db
+  Eb
+  Gb
+  Ab
+  Bb
+  Cbm
+  Dbm
+  Ebm
+  Gbm
+  Abm
+  Bbm
+}
+
+enum SectionTitle {
+  Verse
+  PreChorus
+  Chorus
+  Bridge
+  Intro
+  Outro
+}
+
+model Song {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  key       NoteEnum
+  bpm       Int
+  sections  Section[]
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  createdBy String    @map("created_id")
+}
+
+type Section {
+  title  SectionTitle
+  lyrics String
+  chords Chord[]
+}
+
+type Chord {
+  chord    String
+  minor    Boolean
+  dominant Boolean
+}
