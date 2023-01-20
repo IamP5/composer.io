@@ -2,7 +2,6 @@ import { router, publicProcedure } from '../server/trpc';
 import { z } from 'zod'
 import { Note } from '../enums/note.enum';
 import { SectionTitle } from '../enums/section-title.enum';
-import { Song } from '@prisma/client';
 
 export const songRouter = router({
   getAll: publicProcedure.query(({ ctx }) => {
