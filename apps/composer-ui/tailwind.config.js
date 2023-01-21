@@ -1,12 +1,17 @@
 /** @type {import('tailwindcss').Config} */
+const { createGlobPatternsForDependencies } = require('@nrwl/angular/tailwind');
+const { join } = require('path');
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: [
+    join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
+    ...createGlobPatternsForDependencies(__dirname),
+  ],
   theme: {
     colors: {
-      'primary': '#3C6255',
-      'secondary': '#61876E',
-      'tertiary': '#A6BB8D',
-      'text': '#EAE7B1',
+      'primary': '#F5EDCE',
+      'secondary': '#89C4E1',
+      'tertiary': '#58287F',
+      'text': '#1A0000',
     },
     extend: {},
   },
