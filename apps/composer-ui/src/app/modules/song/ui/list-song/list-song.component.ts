@@ -18,21 +18,23 @@ import { CardSongComponent } from "../card-song/card-song.component";
 export class ListSongComponent {
 
   @Input()
-  songs: Song[] = [
-    {
-      name: 'My Best Work',
-      bpm: 120,
-      key: 'A'
-    },
-    {
-      name: 'WO',
-      bpm: 120,
-      key: 'A'
-    },
-    {
-      name: 'T',
-      bpm: 120,
-      key: 'A'
-    }
-  ]
+  songs!: Song[];
+
+  // [
+  //   {
+  //     name: 'My Best Work',
+  //     bpm: 120,
+  //     key: 'A'
+  //   },
+  //   {
+  //     name: 'WO',
+  //     bpm: 120,
+  //     key: 'A'
+  //   },
+  //   {
+  //     name: 'T',
+  //     bpm: 120,
+  //     key: 'A'
+  //   }
+  // ]
 }

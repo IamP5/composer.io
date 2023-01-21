@@ -1,5 +1,5 @@
 export interface Song {
-    name: string,
-    bpm: number,
-    key: string
+    // name: string,
+    // bpm: number,
+    // key: string
 }
