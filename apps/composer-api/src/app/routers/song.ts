@@ -9,7 +9,7 @@ export const songRouter = router({
   }),
 
   getByUser: publicProcedure
-    .input(z.string())
+    .input(z.string().min(1))
     .mutation(({ ctx, input }) => {
       return ctx.prisma.song.findMany({
         where: {
@@ -21,19 +21,19 @@ export const songRouter = router({
   create: publicProcedure
     .input(
       z.object({
-        title: z.string().max(40),
+        title: z.string().min(1).max(40),
         key: z.nativeEnum(Note),
         bpm: z.number().min(20).max(280),
         sections: z.array(z.object({
           title: z.nativeEnum(SectionTitle),
-          lyrics: z.string().max(1000),
+          lyrics: z.string().min(1).max(1000),
           chords: z.array(z.object({
-            chord: z.string().max(10),
+            chord: z.string().min(1).max(10),
             minor: z.boolean(),
             dominant: z.boolean(),
           }))
         })),
-        createdBy: z.string().max(40),
+        createdBy: z.string().min(1).max(40),
       })
     )
     .mutation(({ ctx, input }) => {
