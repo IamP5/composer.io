@@ -1,7 +1,6 @@
 import { router, publicProcedure } from '../server/trpc';
 import { z } from 'zod'
-import { Note } from '../enums/note.enum';
-import { SectionTitle } from '../enums/section-title.enum';
+import { NoteEnum, SectionTitle } from '@prisma/client';
 
 export const songRouter = router({
   getAll: publicProcedure.query(({ ctx }) => {
@@ -22,7 +21,7 @@ export const songRouter = router({
     .input(
       z.object({
         title: z.string().min(1).max(40),
-        key: z.nativeEnum(Note),
+        key: z.nativeEnum(NoteEnum),
         bpm: z.number().min(20).max(280),
         sections: z.array(z.object({
           title: z.nativeEnum(SectionTitle),
